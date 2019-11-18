@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Formulär</title>
+</head>
+
+<body>
+    <form action="#" method="get" id="newsletter">
+        <!-- Era indatafält med etiketter -->
+        <input id="name" type="text" value="Namn">
+        <input id="age" type="text" value="Ålder">
+        <input id="email" type="text" value="Epost">
+        <input type="submit" value="Skicka">
+    </form>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+        var name = $("#name").val();
+        var age = $("#age").val();
+        var email = $("#email").val();
+        // När användaren klickar på "skicka"-knappen
+        $("#newsletter").on("submit", function (e) {
+            //... er kod som validerar formuläret
+            if (name == "Namn" || name == "" || name.length < 3) {
+                $("#name").css("background-color", "red");
+                e.preventDefault();
+            }
+            if (age == "Ålder" || age == "" || age.length > 3) {
+                $("#age").css("background-color", "red");
+                e.preventDefault();
+            }
+            if (email == "Epost" || email == "" || email.length < 8) {
+                $("#email").css("background-color", "red");
+                e.preventDefault();
+                // Om allt går bra, skicka iväg formuläret
+            }
+            $("#newsletter").submit();
+        });
+
+        $("#name").change(function () {
+            if (name != "Namn" || name != "" || name.length > 3) {
+                $("#name").css("background-color", "white");
+            }
+        })
+        $("#age").change(function () {
+            if (age != "Ålder" || age != "" || age.length < 3) {
+                $("#age").css("background-color", "white");
+            }
+        })
+        $("#email").change(function () {
+            if (email != "Epost" || email != "" || email.length < 8) {
+                $("#email").css("background-color", "white");
+            }
+        })
+    </script>
+</body>
+
+</html>

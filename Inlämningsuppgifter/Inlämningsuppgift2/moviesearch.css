@@ -1,0 +1,21 @@
+#movie-container {
+    margin-bottom: 75px;
+}
+
+.movie {
+    padding: 20px;
+    border-radius: 4px;
+    background-color: #eee;
+    margin: 10px auto;
+    width: 100%;
+    justify-content: space-between;
+    align-content: center;
+}
+
+.btn {
+    width: 100%;
+}
+
+#infoToUser {
+    margin-top: 1em;
+}

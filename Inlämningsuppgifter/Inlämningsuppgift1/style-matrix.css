@@ -1,0 +1,136 @@
+/* Generella egenskaper */
+
+body {
+    margin: 0px;
+    font-family: Courier New, Courier, monospace;
+    background-color: rgb(0, 88, 0);
+}
+
+figure {
+    margin: 0;
+}
+
+
+/* Textstorlek och alignment för h1 */
+
+header>h1 {
+    color: white;
+    text-align: center;
+    white-space: nowrap;
+    text-shadow: 1px 1px 2px green, 0 0 25px greenyellow, 0 0 8px greenyellow;
+}
+
+
+/* padding i underkant för h3 */
+
+figure>h3 {
+    padding-bottom: 1em;
+}
+
+
+/* ändra design på länkar */
+
+nav>a {
+    /* font-size: 16px; */
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid green;
+}
+
+
+/* ändra design på länkar vid hovring */
+
+nav>a:hover {
+    color: green;
+}
+
+
+/* sätter wrapper (container) till att visas som grid box */
+
+.wrapper {
+    display: grid;
+    margin: 5px;
+    grid-gap: 1em;
+}
+
+
+/* sätter grid-area färg och padding för header */
+
+.wrapper>header {
+    grid-area: header;
+    background-color: black;
+    /* padding: 1em; */
+    box-shadow: 0 4px 16px 0 greenyellow, 0 2px 4px 0 greenyellow;
+}
+
+
+/* sätter grid-area färg och padding för nav */
+
+.wrapper>nav {
+    grid-area: nav;
+    background-color: black;
+    box-shadow: 0 4px 16px 0 greenyellow, 0 2px 4px 0 greenyellow;
+}
+
+
+/* sätter grid-area färg och padding för main */
+
+.wrapper>main {
+    grid-area: main;
+    background-color: black;
+    box-shadow: 0 4px 16px 0 greenyellow, 0 2px 4px 0 greenyellow;
+}
+
+
+/* sätter grid-area färg och padding för footer */
+
+.wrapper>footer {
+    grid-area: footer;
+    background-color: black;
+    color: green;
+    padding: 1em;
+    box-shadow: 0 4px 16px 0 greenyellow, 0 2px 4px 0 greenyellow;
+}
+
+
+/* sätter nav att visas som flex box */
+
+#nav {
+    display: flex;
+    padding: 1em;
+}
+
+
+/* sätter main-container att visas som grid box */
+
+#main-container {
+    display: grid;
+}
+
+
+/* sätter storlek och alignment på header2 */
+
+#header2 {
+    color: green;
+    font-size: 18px;
+    text-align: center;
+}
+
+
+/* sätter färg, kantrundning och padding för box-klassen */
+
+.box {
+    background-color: green;
+    padding: 1em;
+}
+
+#drop-down-menu {
+    margin: 1em;
+}
+
+#menu-button {
+    color: white;
+    text-align: center;
+}

@@ -1,0 +1,47 @@
+body {
+    background-color: lightgrey;
+    font-family: monospace;
+    font-size: 10px;
+    color: darkblue;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: fantasy;
+    font-size: 15px;
+    color: cornflowerblue;
+}
+
+table   {
+  background-color:#ffff99;
+  border:1px solid #cccccc;
+  width:300px;
+}
+
+thead   {
+  background-color:#ffff33;
+}
+
+td, th  {
+  padding:5px;
+}
+
+#personal {
+    background-color: chocolate;
+}
+
+.viktig {
+    color: darkred;
+}
+
+a {
+    color: fuchsia;
+}
+
+a:visited {
+    color: aqua;
+}
+
+a:hover, a:focus {
+    color: yellow;
+    color: blue;
+}

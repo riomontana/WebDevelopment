@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Chuck Norris Jokes</title>
+	<!-- Latest compiled and minified CSS -->
+	<link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+
+	<div id="wrapper">
+		<h1>Chuck Norris Jokes</h1>
+		<select id="drop-down-menu">
+			<option value="all categories" selected="selected">all categories</option>
+			<option value="nerdy">nerdy</option>
+			<option value="explicit">explicit</option>
+		</select>
+		<form>
+			Firstname <input id="fname" type="text" name="fname">
+			Lastname <input id="lname" type="text" name="lname">
+			Nbr of jokes <input id="nbrofjokes" type="number" name="nbrofjokes">
+		</form>
+		<a href="#" id="get-tips">Get a joke!</a>
+	</div>
+	<hr>
+	<div id="tips"></div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<script src="script.js"></script>
+	</script>
+</body>
+
+</html>

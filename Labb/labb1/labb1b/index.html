@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <meta charset="utf-8">
+            <title>labb 1b</title>
+        </head>
+
+        <body>
+            <h1>Labb 1b</h1>
+            <table>
+                <caption>Lediga lägenheter i malmö</caption>
+                <thead>
+                    <tr>
+                        <th>Objektnr</th>
+                        <th>Antal rum</th>
+                        <th>Våning</th>
+                        <th>Yta (kvm)</th>
+                        <th>Hyra (kr/mån)</th>
+                        <th>Adress</th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1003</td>
+                        <td>2 rok</td>
+                        <td>3 av 5</td>
+                        <td>43</td>
+                        <td>5780</td>
+                        <td>Amiralsgatan 18</td>
+                    </tr>
+                    <tr>
+                        <td>1006</td>
+                        <td>3 rok</td>
+                        <td>4 av 4</td>
+                        <td>74</td>
+                        <td>7380</td>
+                        <td>Studentgatan 2</td>
+                    </tr>
+                    <tr>
+                        <td>1031</td>
+                        <td>1 rok</td>
+                        <td>2 av 4</td>
+                        <td>33</td>
+                        <td>4690</td>
+                        <td>Kompassgatan 34</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <form action="http://webshare.mah.se/ctfroh/da158a/formtest.php" method="post">
+                <fieldset>
+                    <legend>Ansök om bostad</legend>
+                    <p>
+                        <label for="first_name">Förnamn: </label>
+                        <input type="text" name="first_name" id="first_name">
+                    </p>
+                    <p>
+                        <label for="last_name">Efternamn: </label>
+                        <input type="text" name="last_name" id="last_name">
+                    </p>
+                    <p>
+                        <label for="phone">Telefonnummer: </label>
+                        <input type="text" name="phone" id="phone">
+                    </p>
+                    <p>
+                        <label for="extra_info">Övrig info: </label>
+                        <textarea name="extra_info" rows="4" cols="20"></textarea>
+                    </p>
+                    <p>
+                        <label for="apartment_nr">Lägenhetsnr</label>
+                        <select name="apartment_nr" id="apartment_nr">
+                            <option>1003</option>
+                            <option>1006</option>
+                            <option>1031</option>
+                        </select>
+                    </p>
+                    <p>
+                        <label for="single">Single</label>
+                        <input type="radio" name="relationship" value="single" id="single">
+                        <label for="together">Together</label>
+                        <input type="radio" name="relationship" value="togehter" id="together">
+                        <label for="yadiyada">Yadiyada</label>
+                        <input type="radio" name="relationship" value="yadadada" id="yadiyada">
+                    </p>
+                    <p>
+                        <label for="agreement">I agree</label>
+                        <input type="checkbox" name="agreement" value="agreed" id="agreement">
+                        <label for="over_18">over 18</label>
+                        <input type="checkbox" name="age" value="over_18" id="over_18">
+                    </p>
+                    <input type="submit" value="Ansök">
+                </fieldset>
+            </form>
+        </body>
+    </html>

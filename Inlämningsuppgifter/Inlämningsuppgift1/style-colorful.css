@@ -1,0 +1,144 @@
+/* Generella egenskaper */
+
+body {
+    margin: 0px;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    background-color: aquamarine;
+}
+
+figure {
+    margin: 0;
+}
+
+
+/* Textstorlek och alignment för h1 */
+
+header>h1 {
+    color: goldenrod;
+    text-align: center;
+    white-space: nowrap;
+    text-shadow: 1px 1px 2px royalblue, 0 0 25px rebeccapurple, 0 0 8px red;
+}
+
+
+/* padding i underkant för h3 */
+
+figure>h3 {
+    padding-bottom: 1em;
+}
+
+
+/* ändra design på länkar */
+
+nav>a {
+    font-size: 16px;
+    color: crimson;
+    text-decoration: none;
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid orangered;
+}
+
+
+/* ändra design på länkar vid hovring */
+
+nav>a:hover {
+    color: indianred;
+}
+
+
+/* sätter wrapper (container) till att visas som grid box */
+
+.wrapper {
+    display: grid;
+    padding: 1em;
+    grid-gap: 1em;
+}
+
+
+/* sätter grid-area färg och padding för header */
+
+.wrapper>header {
+    grid-area: header;
+    background-color: orangered;
+    padding: 1em;
+    box-shadow: 0 4px 16px 0 darkmagenta, 0 2px 4px 0 violet;
+    border-radius: 50px;
+}
+
+
+/* sätter grid-area färg och padding för nav */
+
+.wrapper>nav {
+    grid-area: nav;
+    background-color: burlywood;
+    box-shadow: 4px 4px 8px brown;
+    padding: 3px;
+    border-radius: 50px;
+}
+
+
+/* sätter grid-area färg och padding för main */
+
+.wrapper>main {
+    grid-area: main;
+    background-color: lawngreen;
+    padding: 1em;
+    box-shadow: 0 4px 16px 0 firebrick, 0 2px 4px 0 fuchsia;
+    border-radius: 50px;
+}
+
+
+/* sätter grid-area färg och padding för footer */
+
+.wrapper>footer {
+    grid-area: footer;
+    background-color: salmon;
+    padding: 1em;
+    box-shadow: 0 4px 16px 0 seagreen, 0 2px 4px 0 sienna;
+    border-radius: 50px;
+}
+
+
+/* sätter nav att visas som flex box */
+
+#nav {
+    display: flex;
+    padding: 1em;
+}
+
+
+/* sätter main-container att visas som grid box */
+
+#main-container {
+    display: grid;
+}
+
+
+/* sätter storlek och alignment på header2 */
+
+#header2 {
+    color: hotpink;
+    font-size: 25px;
+    text-align: center;
+}
+
+
+/* sätter färg, kantrundning och padding för box-klassen */
+
+.box {
+    background-color: chocolate;
+    padding: 1em;
+    box-shadow: 0 4px 16px 0 blueviolet, 0 2px 4px 0 springgreen;
+    border-radius: 30px;
+}
+
+#drop-down-menu {
+    margin: 1em;
+}
+
+#menu-button {
+    font-size: 22px;
+    color: crimson;
+    text-align: center;
+}

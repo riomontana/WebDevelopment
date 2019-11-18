@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Ladda upp media</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="icon.png">
+    <link rel="apple-touch-icon" href="icon.png">
+    <link rel="stylesheet" type="text/css" media="screen" href="fileupload.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous" />
+</head>
+
+<body>
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">Inlämningsuppgift 2</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="index.html">Start
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="moviesearch.html">Filmsökning</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="fileupload.html">Ladda upp media</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="showmedia.html">Visa media</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container" id="main-container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h1 class="mt-5">Ladda upp media</h1>
+                    <p class="lead">Ladda upp bilder, video eller ljudfiler.
+                    </p>
+                </div>
+            </div>
+
+            <form action="server.php" enctype="multipart/form-data" method="post" id="myForm">
+                <div class="form-group">
+                    <select class="form-control form-control-md form-margin" id="drop-down-list" name="type">
+                        <option value="">Välj typ av fil som ska laddas upp</option>
+                        <option value="image">Bild</option>
+                        <option value="video">Video</option>
+                        <option value="audio">Ljud</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Välj en filtyp i listan</div>
+                    <input class="form-control form-margin" type="file" name="media" id="file" value="Välj en fil" accept="" capture>
+                    <div class="invalid-feedback">
+                        Välj en fil från hårddisken som ska laddas upp
+                    </div>
+                    <input class="form-control form-margin" type="text" name="title" id="title" placeholder="Ange en titel">
+                    <div class="invalid-feedback">
+                        Ange en titel på filen som ska laddas upp
+                    </div>
+                    <input class="btn btn-success" type="submit" value="Ladda upp fil">
+                </div>
+            </form>
+            <hr>
+        </div>
+
+        <footer class="footer"></footer>
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+        <script src="fileupload.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Labb9</title>
+    <style>
+        .loader {
+            border: 16px solid #f3f3f3;
+            /* Light grey */
+            border-top: 16px solid #3498db;
+            /* Blue */
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <form action="server.php" enctype="multipart/form-data" method="post" id="myForm">
+        <select id="drop-down-list" name="type">
+            <option value="">Välj typ här</option>
+            <option value="image">Foto</option>
+            <option value="video">Video</option>
+            <option value="audio">Ljud</option>
+        </select>
+        <input type="file" name="media" class="btn" accept="" capture>
+        <input type="submit" value="Spara media" class="btn">
+        <input type="text" name="title">
+    </form>
+    <select id="drop-down-showfiles" name="type">
+        <option value="" selected="selected">Välj typ här</option>
+        <option value="all">Visa alla</option>
+        <option value="image">Endast bilder</option>
+        <option value="video">Endast video</option>
+        <option value="audio">Endast ljud</option>
+    </select>
+    <div id="media-container"></div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+
+        // Gör så att den typ av fil användaren valt i listan blir förvald i filuppladdningsfönstret
+        $("#drop-down-list").change(function () {
+            $("input").attr("accept", $(this).val() + '/*');
+        });
+
+        // När man skickar iväg formuläret (klickat på knappen "Spara media")
+        $("#myForm").submit(function (e) {
+            $("#infoToUser").remove();
+            $("body").append('<p id="infoToUser">Filen håller på att laddas upp...</p>');
+            // lägger till en spinner så användaren ser att filen håller på att laddas upp
+            $("body").append('<div class="loader" id="spinner"></div>');
+            // Förhindrar att vi skickas iväg till en ny sida (standardhändelsen)
+            e.preventDefault();
+            // Hämtar formulärsdata (värde från drop-down menyn, samt filen)
+            var formData = new FormData(this);
+            // Gör ett ajax-anrop
+            $.ajax({
+                url: $(this).attr("action"), // Till adressen "server.php"
+                type: $(this).attr("method"), // Med metoden "post"
+                data: formData, // Vår data vi skickar med
+                dataType: "JSON", // Hur vi ska tolka den data vi får tillbaka (som JSON)
+                cache: false, // Vi tillåter inte att webbläsaren att cacha några resultat
+                contentType: false, // Vi vill inte att jQuery ska bestämma hur vårt innehåll ska tolkas
+                processData: false // Vi tillåter inte att jQuery att processa vår data (som strängar)
+            }).done(function (data) {
+                // Om vi får ett lyckat svar
+                $("#spinner").remove();
+                $("#infoToUser").remove();
+                $("body").append('<p id="infoToUser">Filen är nu uppladdad! :D</p>');
+                removeInfoToUser();
+            }).fail(function (data) {
+                // Om vi får ett misslyckat svar
+                $("#spinner").remove();
+                $("#infoToUser").remove();
+                $("body").append('<p id="infoToUser">Filen kunde tyvärr inte laddas upp.. :(</p>');
+                removeInfoToUser();
+            });
+        });
+
+        function removeInfoToUser() {
+            $("#infoToUser").delay(5000).fadeOut();
+        }
+        // Användaren kan välja mellan att visa endast bilder, video, ljud eller alla typer
+        $("#drop-down-showfiles").change(function () {
+            // kallar på funktion som tar bort containern fylld med media element
+            removeMediaContainer();
+            // kallar på funktion som skapar en ny tom container för de nya media elementen
+            createMediaContainer();
+            // om alla typer ska visas hämtas alla filer
+            if ($(this).val() == "all") {
+                getPhoto();
+                getVideo();
+                getAudio();
+                // annars om enbart bilder ska visas hämtas bara bilder
+            } else if ($(this).val() == "image") {
+                getPhoto();
+                // annars om enbart video ska visas hämtas bara video
+            } else if ($(this).val() == "video") {
+                getVideo();
+                // annars om enbart ljudfiler ska visas hämtas bara ljudfiler
+            } else if ($(this).val() == "audio") {
+                getAudio();
+            }
+        });
+
+        // Funktion som kallas vid val av vilka typer som ska visas på sidan
+        // tar bort elementet media-container som håller alla media element
+        function removeMediaContainer() {
+            $("#media-container").remove();
+        }
+
+        // Skapar en container som håller media element
+        function createMediaContainer() {
+            $("body").append('<div id="media-container"></div>');
+        }
+
+        // Hämtar alla bilder som finns i databasen och lägger till dem så att de visas för användaren
+        function getPhoto() {
+            var httpRequest = new XMLHttpRequest();
+
+            httpRequest.open('GET', 'server.php?action=getMedia&type=photo', true);
+            httpRequest.send();
+
+            httpRequest.onreadystatechange = function () {
+                // Process the server response here.
+                if (httpRequest.readyState === XMLHttpRequest.DONE) {
+                    if (httpRequest.status === 200) {
+                        var json = JSON.parse(httpRequest.responseText);
+                        var photos = json.files;
+
+                        for (var i in photos) {
+                            var filepath = photos[i].path;
+                            var title = photos[i].title;
+                            $("#media-container").append('<img src="' + filepath + '" height="200" width="300"><p>' + title + '</p>');
+                        }
+                    } else {
+                        console.log('There was a problem with the request.');
+                    }
+                }
+            };
+        }
+
+        // Hämtar alla videofiler som finns i databasen och lägger till dem så att de visas för användaren
+        function getVideo() {
+            var httpRequest = new XMLHttpRequest();
+
+            httpRequest.open('GET', 'server.php?action=getMedia&type=video', true);
+            httpRequest.send();
+
+            httpRequest.onreadystatechange = function () {
+                // Process the server response here.
+                if (httpRequest.readyState === XMLHttpRequest.DONE) {
+                    if (httpRequest.status === 200) {
+                        var json = JSON.parse(httpRequest.responseText);
+                        var videos = json.files;
+
+                        for (var i in videos) {
+                            var filepath = videos[i].path;
+                            var title = videos[i].title;
+                            $("#media-container").append('<video width="320" height="240" controls><source src="'
+                                + filepath + '" type="video/mp4">Your browser does not support the video tag.</video><p>'
+                                + title + '</p>');
+                        }
+                    } else {
+                        console.log('There was a problem with the request.');
+                    }
+                }
+            };
+        }
+
+        // Hämtar alla ljudfiler som finns i databasen och lägger till dem så att de visas för användaren
+        function getAudio() {
+            var httpRequest = new XMLHttpRequest();
+
+            httpRequest.open('GET', 'server.php?action=getMedia&type=audio', true);
+            httpRequest.send();
+
+            httpRequest.onreadystatechange = function () {
+                // Process the server response here.
+                if (httpRequest.readyState === XMLHttpRequest.DONE) {
+                    if (httpRequest.status === 200) {
+                        var json = JSON.parse(httpRequest.responseText);
+                        var sounds = json.files;
+
+                        for (var i in sounds) {
+                            var filepath = sounds[i].path;
+                            var title = sounds[i].title;
+                            $("#media-container").append('<audio controls><source src="'
+                                + filepath + '" type="audio/mp3">Your browser does not support the audio tag.</audio><p>'
+                                + title + '</p>');
+                        }
+                    } else {
+                        console.log('There was a problem with the request.');
+                    }
+                }
+            };
+        }
+    </script>
+</body>
+
+</html>
